@@ -3,7 +3,7 @@ package ro.jademy.millionaire;
 import java.util.ArrayList;
 
 public class Question {
-    private String questions;
+    public String questionText;
     public int difficulty;
     private int prize;
     public ArrayList<Answer> answerList= new ArrayList<>();
@@ -11,9 +11,11 @@ public class Question {
 
     public Question(){}
 
-    public Question(String question ,ArrayList<Answer> answerList){
+    public Question(String question ,ArrayList<Answer> answerList, int difficulty, int prize){
         this.answerList = answerList;
-        this.questions = question;
+        this.questionText = question;
+        this.difficulty = difficulty;
+        this.prize = prize;
     }
 
     /*
@@ -28,7 +30,7 @@ public class Question {
 
     public boolean validateQuestion(Question question){
         for(Answer answer : answerList){
-            if(answer.isCorrect == true){
+            if(answer.isCorrect){
                 System.out.println("The question has a correct answer");
                 return true;
             }
