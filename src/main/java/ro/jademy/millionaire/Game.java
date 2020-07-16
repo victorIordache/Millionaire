@@ -1,15 +1,25 @@
 package ro.jademy.millionaire;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
+    public static Scanner playerInput = new Scanner(System.in);
+
+
     public static void setGame(){
-        QuestionSet easyQuestionsSet = new QuestionSet();
+        QuestionSet questionSet = new QuestionSet();
         //Create Array answer for a question.
         ArrayList<Answer> answerQuestionEasy = new ArrayList<>();
+        ArrayList<Answer> answerQuestionMedium = new ArrayList<>();
+        ArrayList<Answer> answerQuestionHard = new ArrayList<>();
+        ArrayList<Answer> answerQuestionVeryHard = new ArrayList<>();
 
         //Create Question and assign his Array of answers.
-        Question questionEasy = new Question("2 + 2 equals?",answerQuestionEasy);
+        Question questionEasy = new Question("2 + 2 equals?",answerQuestionEasy,1,1000);
+        Question questionMedium = new Question("What what what what what",answerQuestionMedium, 2,10000);
+        Question questionHard = new Question("ma doare in pula?",answerQuestionHard,3,100000);
+        Question questionVeryHard = new Question("esti prost?",answerQuestionVeryHard,4,1000000);
 
         //Add answers to Array.
         questionEasy.answerList.add(new Answer("4",true));
@@ -17,18 +27,59 @@ public class Game {
         questionEasy.answerList.add(new Answer("14",false));
         questionEasy.answerList.add(new Answer("Fish",false));
 
+        questionMedium.answerList.add(new Answer("",false));
+        questionMedium.answerList.add(new Answer("",false));
+        questionMedium.answerList.add(new Answer("",false));
+        questionMedium.answerList.add(new Answer("",false));
+
+
 
         //Validate Question/Answers, if no correct answer exist ==> Question == null.
         //TODO
         questionEasy.validateQuestion(questionEasy);
 
-        easyQuestionsSet.questionList.add(questionEasy);
+        questionSet.questionList.add(questionEasy);
+        questionSet.questionList.add(questionMedium);
+        questionSet.questionList.add(questionHard);
+        questionSet.questionList.add(questionVeryHard);
+
+
+
+
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("$                                $");
+        System.out.println("$           Welcome to:          $");
+        System.out.println("$ Who wants to be a MILLIONAIRE! $");
+        System.out.println("$                                $");
+
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("$                                $");
+        System.out.println("$ What is your name?             $");
+        System.out.println("$                                $");
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+        String name = playerInput.nextLine();
+        Player player1 = new Player(name);
+
+        startGame(player1,questionSet);
+
+
     }
     //TODO MENU
     /*
     ASK FOR NAME
     INSERT NAME
         START GAME
+    */
+    public static void startGame(Player player, QuestionSet questionSet){
+        System.out.println("Hello " +player.name+ ", are you ready?");
+        for(int i = 0; i<4 ;i++) {
+            Question questionCurrent = questionSet.questionList.get(i);
+            System.out.println(questionCurrent.questionText);
+        }
+    }
+
+    /*
             TODO START_GAME
 
                 O CHOOSE 1 QUESTIONSET

@@ -6,4 +6,8 @@ public class Player {
     public boolean isHelpFiftyUsed = false;
     public boolean isHelpJumpUsed = false;
     public boolean isHelpSwitchUsed = false;
+
+    public Player(String name) {
+        this.name = name;
+    }
 }
