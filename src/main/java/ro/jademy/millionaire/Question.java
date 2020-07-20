@@ -1,6 +1,7 @@
 package ro.jademy.millionaire;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Question {
 
@@ -64,21 +65,21 @@ public class Question {
     Remove 2 out of 4 answers in case players wants to use 50/50 help
     Steps:
         1. Create a variable to keep count of how many answers are elimated
-        2. Create an Answer Object to go through the list
-        3. if anwer is wrong remove it
+        2. Create a random number to simulate the "real" random
+        2. if answer is wrong remove it
             else
            just don't remove it lol.
-
      */
 
     public void eliminateTwoFalseAnswers(){
         int eliminatedAnswers=0;
+        //Generate a random number between 2 certain points to create a "real" random.
         do{
-            for(Answer answerCheck : answerList){
-                if(answerCheck.isCorrect == false){
-                    answerList.remove(answerCheck);
-                    eliminatedAnswers++;
-                }
+            Random rand = new Random();
+            int randomNum = rand.nextInt((answerList.size() - 0) + 0) +0;
+            if(answerList.get(randomNum).isCorrect == false){
+                answerList.remove(randomNum);
+                eliminatedAnswers++;
             }
         }while(eliminatedAnswers<3);
     }
