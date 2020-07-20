@@ -6,79 +6,63 @@ import java.util.Scanner;
 public class Game {
     public static Scanner playerInput = new Scanner(System.in);
 
-
     public static void setGame(){
         QuestionSet questionSet = new QuestionSet();
         //Create Array answer for a question.
-        ArrayList<Answer> answerQuestionEasy = new ArrayList<>();
-        ArrayList<Answer> answerQuestionMedium = new ArrayList<>();
-        ArrayList<Answer> answerQuestionHard = new ArrayList<>();
-        ArrayList<Answer> answerQuestionVeryHard = new ArrayList<>();
 
         //Create Question and assign his Array of answers.
-        Question questionEasy = new Question("2 + 2 equals?",answerQuestionEasy,1,1000);
-        Question questionMedium = new Question("What what what what what",answerQuestionMedium, 2,10000);
-        Question questionHard = new Question("ma doare in pula?",answerQuestionHard,3,100000);
-        Question questionVeryHard = new Question("esti prost?",answerQuestionVeryHard,4,1000000);
+        Question questionEasy = new Question("2 + 2 equals?",1,1000);
+        Question questionMedium = new Question("What's the capital of Romania?", 2,10000);
+        Question questionHard = new Question("Which king was married to Eleanor of Aquitaine?",3,100000);
+        Question questionVeryHard = new Question("Which county cricket side is based at Chester-le-Street?",4,1000000);
 
         //Add answers to Array.
         questionEasy.answerList.add(new Answer("4",true));
         questionEasy.answerList.add(new Answer("28",false));
         questionEasy.answerList.add(new Answer("14",false));
-        questionEasy.answerList.add(new Answer("Fish",false));
+        questionEasy.answerList.add(new Answer("2",false));
 
-        questionMedium.answerList.add(new Answer("",false));
-        questionMedium.answerList.add(new Answer("",false));
-        questionMedium.answerList.add(new Answer("",false));
-        questionMedium.answerList.add(new Answer("",false));
+        questionMedium.answerList.add(new Answer("London",false));
+        questionMedium.answerList.add(new Answer("Washington",false));
+        questionMedium.answerList.add(new Answer("Bucharest",false));
+        questionMedium.answerList.add(new Answer("Budapest",false));
 
+        questionHard.answerList.add(new Answer("Henry II", true));
+        questionHard.answerList.add(new Answer("Henry V", false));
+        questionHard.answerList.add(new Answer("Henry I", false));
+        questionHard.answerList.add(new Answer("Richard I", false));
 
+        questionVeryHard.answerList.add(new Answer("Warwickshire", false));
+        questionVeryHard.answerList.add(new Answer("Durham", true));
+        questionVeryHard.answerList.add(new Answer("Northants", false));
+        questionVeryHard.answerList.add(new Answer("Leicestershire", false));
 
         //Validate Question/Answers, if no correct answer exist ==> Question == null.
         //TODO
         questionEasy.validateQuestion(questionEasy);
+        questionMedium.validateQuestion(questionMedium);
+        questionHard.validateQuestion(questionHard);
+        questionVeryHard.validateQuestion(questionVeryHard);
 
         questionSet.questionList.add(questionEasy);
         questionSet.questionList.add(questionMedium);
         questionSet.questionList.add(questionHard);
         questionSet.questionList.add(questionVeryHard);
 
-
-
-
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println("$                                $");
-        System.out.println("$           Welcome to:          $");
-        System.out.println("$ Who wants to be a MILLIONAIRE! $");
-        System.out.println("$                                $");
-
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println("$                                $");
-        System.out.println("$ What is your name?             $");
-        System.out.println("$                                $");
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("            Welcome to:           ");
+        System.out.println("  Who wants to be a MILLIONAIRE!  ");
+        System.out.println("            What is your name?    ");
 
         String name = playerInput.nextLine();
-        Player player1 = new Player(name);
+        Player player = new Player(name);
 
-        startGame(player1,questionSet);
-
-
+        startGame(player,questionSet);
     }
-    //TODO MENU
-    /*
-    ASK FOR NAME
-    INSERT NAME
-        START GAME
-    */
+
     public static void startGame(Player player, QuestionSet questionSet){
-        System.out.println("Hello " +player.name+ ", are you ready?");
-        for(int i = 0; i<4 ;i++) {
-            Question questionCurrent = questionSet.questionList.get(i);
-            System.out.println(questionCurrent.questionText);
-        }
+        System.out.println(" Hello " +player.name+ ", are you ready? ");
+        questionSet.printQuestionSet();
     }
-
     /*
             TODO START_GAME
 
