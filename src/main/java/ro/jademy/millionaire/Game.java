@@ -17,25 +17,25 @@ public class Game {
         Question questionVeryHard = new Question("Which county cricket side is based at Chester-le-Street?",4,1000000);
 
         //Add answers to Array.
-        questionEasy.answerList.add(new Answer("4",true));
-        questionEasy.answerList.add(new Answer("28",false));
-        questionEasy.answerList.add(new Answer("14",false));
-        questionEasy.answerList.add(new Answer("2",false));
+        questionEasy.addAnswer(new Answer("4",true));
+        questionEasy.addAnswer(new Answer("28",false));
+        questionEasy.addAnswer(new Answer("14",false));
+        questionEasy.addAnswer(new Answer("2",false));
 
-        questionMedium.answerList.add(new Answer("London",false));
-        questionMedium.answerList.add(new Answer("Washington",false));
-        questionMedium.answerList.add(new Answer("Bucharest",false));
-        questionMedium.answerList.add(new Answer("Budapest",false));
+        questionMedium.addAnswer(new Answer("London",false));
+        questionMedium.addAnswer(new Answer("Washington",false));
+        questionMedium.addAnswer(new Answer("Bucharest",false));
+        questionMedium.addAnswer(new Answer("Budapest",false));
 
-        questionHard.answerList.add(new Answer("Henry II", true));
-        questionHard.answerList.add(new Answer("Henry V", false));
-        questionHard.answerList.add(new Answer("Henry I", false));
-        questionHard.answerList.add(new Answer("Richard I", false));
+        questionHard.addAnswer(new Answer("Henry II", true));
+        questionHard.addAnswer(new Answer("Henry V", false));
+        questionHard.addAnswer(new Answer("Henry I", false));
+        questionHard.addAnswer(new Answer("Richard I", false));
 
-        questionVeryHard.answerList.add(new Answer("Warwickshire", false));
-        questionVeryHard.answerList.add(new Answer("Durham", true));
-        questionVeryHard.answerList.add(new Answer("Northants", false));
-        questionVeryHard.answerList.add(new Answer("Leicestershire", false));
+        questionVeryHard.addAnswer(new Answer("Warwickshire", false));
+        questionVeryHard.addAnswer(new Answer("Durham", true));
+        questionVeryHard.addAnswer(new Answer("Northants", false));
+        questionVeryHard.addAnswer(new Answer("Leicestershire", false));
 
         //Validate Question/Answers, if no correct answer exist ==> Question == null.
         //TODO

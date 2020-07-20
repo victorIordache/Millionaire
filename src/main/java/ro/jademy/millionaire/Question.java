@@ -19,7 +19,6 @@ public class Question {
     }
 
     //Add answers to your question!
-
     public void addAnswer(Answer answer){
         this.answerList.add(answer);
     }
