@@ -3,12 +3,14 @@ package ro.jademy.millionaire.data;
 import ro.jademy.millionaire.model.Answer;
 import ro.jademy.millionaire.model.Question;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class dataProvider {
 
-        public static List<Question> ALL_QUESTIONS = Arrays.asList(
+    public static List<Question> ALL_QUESTIONS = Arrays.asList(
             new Question("Question 1", 0, Arrays.asList(
                     new Answer("One", false),
                     new Answer("Two", false),

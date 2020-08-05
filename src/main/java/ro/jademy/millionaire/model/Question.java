@@ -97,9 +97,9 @@ public class Question {
         //Generate a random number between 2 certain points to create a "real" random.
         do{
             Random rand = new Random();
-            int randomNum = rand.nextInt((answerList.size() - 0) + 0) +0;
+            int randomNum = rand.nextInt(answerList.size());
             if(answerList.get(randomNum).isCorrect() == false){
-                answerList.remove(randomNum);
+                answerList.remove(1);
                 eliminatedAnswers++;
             }
         }while(eliminatedAnswers<3);
