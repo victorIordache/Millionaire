@@ -4,8 +4,9 @@ public class Lifeline {
     private String name;
     private boolean used;
 
-    public Lifeline(String name){
+    public Lifeline(String name,boolean used){
         this.name= name;
+        this.used = used;
     }
 
     public String getName() {

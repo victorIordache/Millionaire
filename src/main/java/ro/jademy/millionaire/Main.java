@@ -1,12 +1,69 @@
 package ro.jademy.millionaire;
 
-import ro.jademy.millionaire.model.*;
-import java.util.Scanner;
+import ro.jademy.millionaire.model.Game;
+import ro.jademy.millionaire.model.Lifeline;
+import ro.jademy.millionaire.model.Question;
+import ro.jademy.millionaire.data.dataProvider;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
 
-        Scanner playerInput = new Scanner(System.in);
+        List<Question> difficultyZeroQuestions = getRandomQuestions(5, 0);
+        List<Question> difficultyOneQuestions = getRandomQuestions(5, 1);
+        List<Question> difficultyTwoQuestions = getRandomQuestions(4, 2);
+        List<Question> difficultyThreeQuestions = getRandomQuestions(1, 3);
+
+        List<Lifeline> lifelines = new ArrayList<>();
+        lifelines.add(new Lifeline("50-50",false));
+        lifelines.add(new Lifeline("50-50",false));
+        lifelines.add(new Lifeline("50-50",false));
+
+        Game game = new Game(difficultyZeroQuestions,difficultyOneQuestions,difficultyTwoQuestions,difficultyThreeQuestions,lifelines);
+
+        // start the game
+
+        game.startGame();
+
+    }
+
+    private static List<Question> getRandomQuestions(int nrOfQuestions, int difficulty){
+        // loop through all questions
+        // get all questions of given difficulty
+        // loop through sub-list until nrOfQuestions and select random items by index
+        // return said list
+
+        List<Question> questionsOfDiff = new ArrayList<>();
+        List<Question> questionRandom = new ArrayList<>();
+
+        for(Question question : dataProvider.ALL_QUESTIONS){
+            if(question.getDifficulty() == difficulty){
+                questionsOfDiff.add(question);
+            }
+        }
+        Random random = new Random();
+        for(int i =0;i<nrOfQuestions;i++){
+            int randomIndex = random.nextInt(questionsOfDiff.size());
+            questionRandom.add(questionsOfDiff.remove(randomIndex));
+        }
+        return questionRandom;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
       /*
     public static void setGame(){
         System.out.println("            Welcome to:           ");
@@ -37,5 +94,5 @@ public class Main {
                     3B QUIT.
      */
 
-    }
+
 }

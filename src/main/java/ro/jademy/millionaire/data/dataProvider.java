@@ -8,7 +8,7 @@ import java.util.List;
 
 public class dataProvider {
 
-    private static List<Question> ALL_QUESTIONS = Arrays.asList(
+        public static List<Question> ALL_QUESTIONS = Arrays.asList(
             new Question("Question 1", 0, Arrays.asList(
                     new Answer("One", false),
                     new Answer("Two", false),
