@@ -1,5 +1,6 @@
 package ro.jademy.millionaire;
 
+import ro.jademy.millionaire.model.Answer;
 import ro.jademy.millionaire.model.Game;
 import ro.jademy.millionaire.model.Lifeline;
 import ro.jademy.millionaire.model.Question;
@@ -11,23 +12,29 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-
         List<Question> difficultyZeroQuestions = getRandomQuestions(5, 0);
         List<Question> difficultyOneQuestions = getRandomQuestions(5, 1);
         List<Question> difficultyTwoQuestions = getRandomQuestions(4, 2);
         List<Question> difficultyThreeQuestions = getRandomQuestions(1, 3);
 
-        List<Lifeline> lifelines = new ArrayList<>();
-        lifelines.add(new Lifeline("50-50",false));
-        lifelines.add(new Lifeline("50-50",false));
-        lifelines.add(new Lifeline("50-50",false));
-
-        Game game = new Game(difficultyZeroQuestions,difficultyOneQuestions,difficultyTwoQuestions,difficultyThreeQuestions,lifelines);
+        Game game = new Game(difficultyZeroQuestions,difficultyOneQuestions,difficultyTwoQuestions,difficultyThreeQuestions);
 
         // start the game
 
         game.startGame();
 
+    }
+    public static ArrayList<Answer> addAnswer(){
+        ArrayList<Answer> answerList = new ArrayList<>();
+        Answer answer1 = new Answer("One", false);
+        Answer answer2 = new Answer("tw", false);
+        Answer answer3 = new Answer("thre", false);
+        Answer answer4 = new Answer("f4", true);
+        answerList.add(new Answer("One", false));
+        answerList.add(answer2);
+        answerList.add(answer3);
+        answerList.add(answer4);
+        return answerList;
     }
 
     private static List<Question> getRandomQuestions(int nrOfQuestions, int difficulty){

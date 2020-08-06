@@ -4,6 +4,13 @@ public class Answer {
     private String response;
     private boolean isCorrect;
 
+    public Answer(String response, boolean isCorrect){
+        this.response = response;
+        this.isCorrect = isCorrect;
+    }
+
+    public Answer() {}
+
     public String getResponse() {
         return response;
     }
@@ -20,8 +27,5 @@ public class Answer {
         isCorrect = correct;
     }
 
-    public Answer(String response, boolean isCorrect){
-        this.response = response;
-        this.isCorrect = isCorrect;
-    }
+
 }

@@ -11,7 +11,6 @@ public class Question {
     private List<Answer> answerList= new ArrayList<>();
 
 
-
     public Question(){}
 
     public Question(String question, int difficulty, List<Answer> answerList){
@@ -19,7 +18,6 @@ public class Question {
         this.difficulty = difficulty;
         this.answerList= answerList;
     }
-
 
     public String getQuestionToAsk() {
         return questionToAsk;
@@ -41,11 +39,10 @@ public class Question {
         return answerList;
     }
 
-    public void setAnswerList(ArrayList<Answer> answerList) {
+    public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
-
-    /*
+/*
     checkAnswer steps:
         1. Create an Answer object to go through answerList
         2. Check if any of the question's answers are identical with Player's answer
@@ -80,29 +77,4 @@ public class Question {
         question = null;
         return false;
     }
-
-
-    /*
-    Remove 2 out of 4 answers in case players wants to use 50/50 help
-    Steps:
-        1. Create a variable to keep count of how many answers are elimated
-        2. Create a random number to simulate the "real" random
-        2. if answer is wrong remove it
-            else
-           just don't remove it lol.
-     */
-
-    public void eliminateTwoFalseAnswers(){
-        int eliminatedAnswers=0;
-        //Generate a random number between 2 certain points to create a "real" random.
-        do{
-            Random rand = new Random();
-            int randomNum = rand.nextInt(answerList.size());
-            if(answerList.get(randomNum).isCorrect() == false){
-                answerList.remove(1);
-                eliminatedAnswers++;
-            }
-        }while(eliminatedAnswers<3);
-    }
-
 }

@@ -34,15 +34,17 @@ public class Game {
     private List<Question> difficultyThreeQuestions = new ArrayList<>();
 
     private List<Lifeline> lifeLines = new ArrayList<>();
-
     private Level currentLevel = LEVELS.get(0);
 
-    public Game(List<Question> difficultyZeroQuestions, List<Question> difficultyOneQuestions, List<Question> difficultyTwoQuestions, List<Question> difficultyThreeQuestions, List<Lifeline> lifeLines) {
+    public Game(List<Question> difficultyZeroQuestions, List<Question> difficultyOneQuestions, List<Question> difficultyTwoQuestions, List<Question> difficultyThreeQuestions) {
         this.difficultyZeroQuestions = difficultyZeroQuestions;
         this.difficultyOneQuestions = difficultyOneQuestions;
         this.difficultyTwoQuestions = difficultyTwoQuestions;
         this.difficultyThreeQuestions = difficultyThreeQuestions;
-        this.lifeLines = lifeLines;
+
+        lifeLines.add(new Lifeline("50-50"));
+        lifeLines.add(new Lifeline("50-50"));
+        lifeLines.add(new Lifeline("50-50"));
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -88,6 +90,19 @@ public class Game {
         }
     }
 
+    public void welcome() {
+        String username;
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("$ Welcome to Who Wants to be a Millionaire! $");
+        System.out.println("$              What's your name ?           $");
+        username = scanner.nextLine();
+        System.out.println("$  Welcome,   " + username + " ! $");
+    }
+
+    public void showRules() {
+        System.out.println("RULES: \n 1.50-50 eliminates two wrong answers \n 2.You have only 1 life! \n 3.H is for HELP, it will remove 2 wrong answers");
+    }
+
     private void showQuestions() {
         Question question;
         List<Answer> allAnswers;
@@ -102,17 +117,24 @@ public class Game {
                 // let's assume user responded with apply lifeline
                 // do all validation beforehand
                 applyLifeLine(lifeLines.get(0), question);
-
-
                 break;
 
             case 1:
+                question = difficultyOneQuestions.get(0);
+                allAnswers = printQuestion(question);
+                applyLifeLine(lifeLines.get(0), question);
                 break;
 
             case 2:
+                question = difficultyOneQuestions.get(0);
+                allAnswers = printQuestion(question);
+                applyLifeLine(lifeLines.get(0), question);
                 break;
 
             case 3:
+                question = difficultyOneQuestions.get(0);
+                allAnswers = printQuestion(question);
+                applyLifeLine(lifeLines.get(0), question);
                 break;
 
             default:
@@ -123,8 +145,26 @@ public class Game {
 
     private void applyLifeLine(Lifeline lifeline, Question question){
         if(lifeline.getName().equals("50-50")){
-            question.eliminateTwoFalseAnswers();
-            printQuestion(question);
+            // print all answers except two random WRONG answers
+            Random rnd = new Random();
+            int trackRemovedQuestion = 0;
+            List<Answer> answerListCopy = new ArrayList<>(question.getAnswerList());
+            do {
+                int randomNum = rnd.nextInt(answerListCopy.size());
+                if(answerListCopy.get(randomNum).isCorrect() == false){
+                    answerListCopy.remove(randomNum);
+                    trackRemovedQuestion++;
+                }
+            }while(trackRemovedQuestion<2);
+            for(int i =0;i< answerListCopy.size();i++){
+                Answer answer = answerListCopy.get(i);
+                if(answer.isCorrect() == true || answerListCopy.contains(answer)){
+                    System.out.println((char) (65 + i) + ". " + answerListCopy.get(i).getResponse());
+                }else{
+                    System.out.println((char) (65 + i) + ". ");
+                }
+            }
+            lifeline.setUsed(true);
         }
     }
 
@@ -139,20 +179,9 @@ public class Game {
         return question.getAnswerList();
     }
 
-    public void welcome() {
-        String username;
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println("$ Welcome to Who Wants to be a Millionaire! $");
-        System.out.println("$              What's your name ?           $");
-        username = scanner.nextLine();
-        System.out.println("$  Welcome,   " + username + " ! $");
 
 
-    }
 
-    public void showRules() {
-        System.out.println("RULES: \n 1.50-50 eliminates two wrong answers \n 2.You have only 1 life! \n 3.H is for HELP, it will remove 2 wrong answers");
-    }
 
     public void exitGame() {
         System.out.println("You have exit the game");
